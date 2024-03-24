@@ -52,17 +52,17 @@ project_regex_list[["Relief"]] <- regex("(disaster|relief|food|convicted)", igno
 # realizing the categorization on the column "project_type."
 project_types_column <- fiscal_sponsor_directory %>% 
                           select(project_types) %>% deframe %>%
-                            map( function(x) {
-                              
-                                        category <- c()
-                                      
-                                        for(name in names(project_regex_list)) {
-                                          if(is.na(x) == FALSE & str_detect(x, eval(expr(`$`(project_regex_list, !!name))))) {
-                                            category <- c(category, name)
-                                          }}
+                            map(function(x) {
+                                              category <- c()
+                                              for(name in names(project_regex_list)) {
+                                                  if(is.na(x) == FALSE & 
+                                                       str_detect(x, eval(expr(`$`(project_regex_list, !!name))))) {
+                                                          category <- c(category, name)
+                                                    }  
+                                              }
                                         return(category)
                                       } 
-                                      ) %>% tibble() %>% rename("project_types" = 1)
+                                ) %>% tibble() %>% rename("project_types" = 1)
 
 ## Step 4 : realizing the categorization on the column "fiscal_sponsorship_model"
 # Some sponsporship model information was recorded in the "services" column, with "fsical_sponsorship_model" left blank.
