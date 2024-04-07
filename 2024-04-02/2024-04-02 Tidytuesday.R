@@ -8,7 +8,7 @@ library(sessioninfo)
 tuesdata <- tidytuesdayR::tt_load('2024-04-02')
 dubois_week10 <- tuesdata$dubois_week10
 
-## Color_palette inspired by w.E.B De Bois,
+## Color_palette inspired by w.E.B Du Bois,
 ## source : https://github.com/ajstarks/dubois-data-portraits/blob/master/dubois-style.pdf
 dubois_palette <- c(blalck ='#000000', 
                     brown = '#654321', 
@@ -22,13 +22,13 @@ dubois_palette <- c(blalck ='#000000',
                     gray = '#888888',
                     paper = '#FAF0E6')
 
-## Font : Couldn't find exact 'De Bois' font family, so I selected similar font.
+## Font : Couldn't find exact 'Du Bois' font family, so I selected similar font.
 font_add_google("Chakra Petch", "chakra")
 showtext_auto()
 
 
 ### Plotting ----------
-## DeBois's original chart :
+## Du Bois's original chart :
 ## https://github.com/ajstarks/dubois-data-portraits/blob/master/challenge/2024/challenge10/original-plate-37.jpg
 dubois_week10 %>% 
   mutate(Occupation = factor(Occupation, levels = rev(Occupation))) %>%
@@ -46,14 +46,14 @@ dubois_week10 %>%
     theme_minimal() +
     ylim(c(0,75)) +
     labs( title = "GRADUATES OF ATLANTA UNIVERSITY",
-          subtitle = paste0("IN THE 1900 PARIS EXPOSITION, W.E.B. DEBOIS INTRODUCED A SERIES OF CHARTS,", "\n", 
+          subtitle = paste0("IN THE 1900 PARIS EXPOSITION, W.E.B. DU BOIS INTRODUCED A SERIES OF CHARTS,", "\n", 
                             "SHEDDING LIGHTS ON BLACK LIVES IN THE UNITED STATES AFTER EMANCIPATION.","\n\n",
                             "THE CHARTS WERE PREPARED AND EXECUTED BY BLACK STUDENTS,","\n",
                             "UNDER THE DIRECTION OF ATLANTA UNIVERSITY.","\n\n",
                             "IT HAD GRADUATED 330 BLACK STUDENTS, AMONG WHOM WERE")
           ) +
     geom_text(label = paste0("ATLANTA UNIVERSITY WAS FOUNDED IN 1867.","\n",
-                             "BY THE TIME DEBOIS ISSUED THIS CHART,","\n",
+                             "BY THE TIME DU BOIS ISSUED THIS CHART,","\n",
                              "IT HAD INSTRUCTED 6,000 BLACK STUDENTS."),
                       x = 4, y = 40, family = "chakra", size = 5, colour = dubois_palette[["purple"]]) +
     theme(
